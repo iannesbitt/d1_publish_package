@@ -4,12 +4,11 @@ from .utils import get_config, get_token, add_public_access
 
 def set_package_public(pid):
     """
-    Fix the access policies for objects uploaded in the last three days.
+    Add public read to the access policies of objects in a data package.
 
     This function uses a :py:mod:`d1_client.mnclient_2_0.MemberNodeClient_2_0`
-    client to retrieve a list of objects uploaded in the last three days, and
-    modifies their access policies to include the groups specified in the
-    config document.
+    client to retrieve a list of objects associated with a metadata PID, and
+    modifies their access policies to include the public read.
     """
     config = get_config()
     token = get_token()
