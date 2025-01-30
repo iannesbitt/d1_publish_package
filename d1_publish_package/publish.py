@@ -1,32 +1,26 @@
-from datetime import datetime, timedelta
+import d1_common.types
 from d1_client.mnclient_2_0 import MemberNodeClient_2_0
-from .utils import get_config, get_token, add_public_access
+import d1_common.types.dataoneTypes
+import d1_common.types.exceptions
+from .utils import add_public_access
 
-def set_package_public(pid):
+def set_package_public(pid: str, client: MemberNodeClient_2_0):
     """
-    Add public read to the access policies of objects in a data package.
+    Add public read to the access policies of objects in a list.
 
     This function uses a :py:mod:`d1_client.mnclient_2_0.MemberNodeClient_2_0`
     client to retrieve a list of objects associated with a metadata PID, and
     modifies their access policies to include the public read.
     """
-    config = get_config()
-    token = get_token()
-    mnurl = config['mnurl']
-    # Initialize the mn client
-    options: dict = {
-        "headers": {"Authorization": "Bearer " + token},
-        "timeout_sec": 9999,
-        }
-    client: MemberNodeClient_2_0 = MemberNodeClient_2_0(mnurl, **options)
     # Get a data package
-    object_list = client.getPackage(pid)
-    # Loop through the objects in the package
-    for obj in object_list.objectInfo:
+    try:
         # Retrieve the system metadata for an object
-        sysmeta = client.getSystemMetadata(obj.identifier.value())
+        sysmeta: d1_common.types.dataoneTypes.AccessPolicy = client.getSystemMetadata(pid)
         # Modify the access policy
         sysmeta.accessPolicy = add_public_access(sysmeta=sysmeta)
         # Update the system metadata with the new access policy
-        client.updateSystemMetadata(obj.identifier.value(), sysmeta)
-    client._session.close()
+        updated = client.updateSystemMetadata(pid, sysmeta)
+        if updated == True:
+            print(f'Updated access policy for {pid}')
+    except d1_common.types.exceptions.DataONEException as e:
+        print(e)

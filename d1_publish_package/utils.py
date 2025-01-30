@@ -26,7 +26,6 @@ def get_config():
     :return: The ORCID, node identifier, Member Node URL, and metadata JSON file.
     :rtype: tuple
     """
-    global DATA_ROOT
     global CN_URL
     global CONFIG
     # Set your ORCID
@@ -35,7 +34,6 @@ def get_config():
         config = json.load(lc)
     CONFIG = config
     # set the data root and CN URL
-    DATA_ROOT = Path(config['data_root'])
     CN_URL = config['cnurl'] if config.get('cnurl') else CN_URL
     return config
 
