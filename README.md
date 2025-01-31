@@ -74,7 +74,12 @@ After [installing](#installation) using pip, and [configuring](#configuration) *
 d1_publish_package urn:uuid:f49edb4d-4b20-429b-9118-8b9b0d377ccc urn:uuid:1a5550b6-0319-4be2-892a-58ecfb29d7a0 urn:uuid:5580e89e-d0f3-4588-8b85-ed16b52c4fa9 resource_map_urn:uuid:75a07438-0523-4898-a67b-2c260cd5efff
 ```
 
-**Note: if your dataset is initially private, don't forget to make your resource map public as well!**
+## Important notes
 
-_Todo: automate finding of package objects and making them all public with just one PID._
+- If your dataset is initially private, don't forget to make your resource map public as well!
+- Don't forget to update your token daily! 
+
+## To do
+
+- Automate finding of package objects and making them all public with just one PID
 
