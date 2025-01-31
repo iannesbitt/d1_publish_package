@@ -68,7 +68,7 @@ for the Test KNB:
 
 ## Operation
 
-After [installing](#installation) using pip, you can use the `d1_publish_package` tool to set a PID or list of PIDs public. Use `d1_publish_package --help` to display help text.
+After [installing](#installation) using pip, and [configuring](#configuration) **with a current token**, you can use the `d1_publish_package` tool to set a PID or list of PIDs public. Use `d1_publish_package --help` to display help text.
 
 ```bash
 d1_publish_package urn:uuid:f49edb4d-4b20-429b-9118-8b9b0d377ccc urn:uuid:1a5550b6-0319-4be2-892a-58ecfb29d7a0 urn:uuid:5580e89e-d0f3-4588-8b85-ed16b52c4fa9 resource_map_urn:uuid:75a07438-0523-4898-a67b-2c260cd5efff
