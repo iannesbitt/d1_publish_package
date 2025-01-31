@@ -21,6 +21,8 @@ def set_package_public(pid: str, client: MemberNodeClient_2_0):
         # Update the system metadata with the new access policy
         updated = client.updateSystemMetadata(pid, sysmeta)
         if updated == True:
-            print(f'Updated access policy for {pid}')
+            print(f'Updated.')
+        else:
+            print(f'Failed to update {pid}')
     except d1_common.types.exceptions.DataONEException as e:
         print(e)

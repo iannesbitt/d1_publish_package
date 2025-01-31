@@ -19,10 +19,10 @@ def cli():
         }
     client: MemberNodeClient_2_0 = MemberNodeClient_2_0(mnurl, **options)
 
-    parser = argparse.ArgumentParser(description='Publish a DataONE package.')
-    parser.add_argument('package_ids', type=str, nargs='+', help='The package persistent identifiers (PIDs).')
+    parser = argparse.ArgumentParser(description='Add public read to a DataONE object.')
+    parser.add_argument('ids', type=str, nargs='+', help='The object persistent identifiers (PIDs). Multiple of these can be added to the same command.')
     args = parser.parse_args()
-    for package_id in args.package_ids:
-        print(f'Publishing package: {package_id}')
+    for package_id in args.ids:
+        print(f'Publishing object: {package_id}')
         set_package_public(package_id, client)
     client._session.close()
